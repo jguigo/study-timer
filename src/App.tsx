@@ -1,16 +1,10 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import Button from './components/button'
-
+import Formulario from "./components/Formulario";
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <div className="App">
-      {/* funciona como se fosse uma tag html, porém é uma class */}
-        <Button />
-    </div>
-  )
+   return (
+      <div className="App">
+         <Formulario />
+      </div>
+   );
 }
 
-export default App
+export default App;
