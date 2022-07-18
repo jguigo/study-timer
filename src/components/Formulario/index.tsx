@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "../Button";
-import style from "./Formulario.module.scss";
+import style from "./style.module.scss";
 
 class Formulario extends React.Component {
    render() {

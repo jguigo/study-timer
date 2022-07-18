@@ -1,5 +1,5 @@
 import React from "react";
-import style from "./Button.module.scss";
+import style from "./style.module.scss";
 
 //tipagem é feita dentro de um generic, para as classes. A partir do react 18 o children só funciona com ReactNode
 class Button extends React.Component<{ children: React.ReactNode }> {
