@@ -1,13 +1,30 @@
-import style from "../style.module.scss"
+import { ITarefa } from "../../../types/Tarefas";
+import style from "./style.module.scss";
 
+interface Props extends ITarefa {
+   selecionaTarefa: (TarefaSelecionada: ITarefa) => void;
+}
 
-//poderia ser assim também, desestruturando!
-// function Item(props: { tarefa: string, tempo: string }) {
-//    const { tarefa, tempo } = props;
-function Item({ tarefa, tempo }: { tarefa: string; tempo: string }) {
+function Item({
+   tarefa,
+   tempo,
+   selecionado,
+   completado,
+   id,
+   selecionaTarefa,
+}: Props) {
    return (
-      // key é uma atributo do react, para que ele não fique "perdido" quando interar uma lista
-      <li className={style.item}>
+      <li
+         className={`${style.item} ${selecionado ? style.itemSelecionado : ""}`}
+         onClick={() =>
+            selecionaTarefa({
+               tarefa,
+               tempo,
+               selecionado,
+               completado,
+               id,
+            })
+         }>
          <h3>{tarefa}</h3>
          <span>{tempo}</span>
       </li>
