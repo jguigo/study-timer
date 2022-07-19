@@ -5,27 +5,36 @@ import { tempoParaSegundos } from "../../common/utils/time";
 import { ITarefa } from "../../types/Tarefas";
 import { useEffect, useState } from "react";
 
-interface Props{
-   selecionado: ITarefa | undefined
+interface Props {
+   selecionado: ITarefa | undefined;
 }
 
-function Cronometro({selecionado}: Props) {
+function Cronometro({ selecionado }: Props) {
    const [tempo, setTempo] = useState<number>();
 
    useEffect(() => {
-      if(selecionado?.tempo){
-         setTempo(tempoParaSegundos(selecionado.tempo))
+      if (selecionado?.tempo) {
+         setTempo(tempoParaSegundos(selecionado.tempo));
       }
-   },[selecionado])
+   }, [selecionado]);
+
+   function regressiva(contador: number = 0) {
+      setTimeout(() => {
+         if (contador > 0) {
+            setTempo(contador - 1);
+            return regressiva(contador - 1) //função recursiva!
+         }
+      }, 1000);
+   }
 
    return (
       <div className={style.cronometro}>
          <p className={style.titulo}>Escolha um card e inicie o cronômetro</p>
 
          <div className={style.relogioWrapper}>
-            <Relogio tempo={tempo}/>
+            <Relogio tempo={tempo} />
          </div>
-         <Button>Começar</Button>
+         <Button onClick={() => regressiva(tempo)}>Começar</Button>
       </div>
    );
 }
