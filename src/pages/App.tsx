@@ -6,7 +6,7 @@ import { ITarefa } from "../types/Tarefas";
 import style from "./App.module.scss"; //css-modules
 function App() {
    const [tarefas, setTarefas] = useState<ITarefa[] | []>([]);
-   const [selecioando, setSelecionado] = useState<ITarefa>();
+   const [selecionado, setSelecionado] = useState<ITarefa>();
 
    function selecionaTarefa(tarefaSelecionada: ITarefa) {
       setSelecionado(tarefaSelecionada);
@@ -18,12 +18,24 @@ function App() {
       );
    }
 
+   function finalizarTarefa(){
+      if(selecionado){
+         setSelecionado(undefined)
+         setTarefas(tarefasAnteriores => tarefasAnteriores.map(tarefa => {
+            if(tarefa.id === selecionado.id){
+               return {...tarefa, selecionado:false, completado: true}
+            }
+            return tarefa;
+         }))
+      }
+   }
+
    return (
       //a importação funciona como um objeto, como nossa class AppStyle
       <div className={style.AppStyle}>
          <Formulario setTarefas={setTarefas} />
          <Lista tarefas={tarefas} selecionaTarefa={selecionaTarefa} />
-         <Cronometro selecionado={selecioando}/>
+         <Cronometro selecionado={selecionado} finalizarTarefa={finalizarTarefa}/>
       </div>
    );
 }
