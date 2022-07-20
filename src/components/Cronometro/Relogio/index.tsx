@@ -6,11 +6,10 @@ interface Props {
 }
 
 function Relogio({ tempo = 0 }: Props) {
-
-   const minutos = Math.floor(tempo / 60)
-   const segundos = tempo % 60
-   const [minutosDezena, minutosUnidade] = String(minutos).padStart(2,"0")
-   const [segundoDezena, segundoUnidade] = String(segundos).padStart(2,"0")
+   const minutos = Math.floor(tempo / 60);
+   const segundos = tempo % 60;
+   const [minutosDezena, minutosUnidade] = String(minutos).padStart(2, "0");
+   const [segundoDezena, segundoUnidade] = String(segundos).padStart(2, "0");
 
    return (
       <>

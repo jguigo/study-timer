@@ -3,8 +3,8 @@ import Item from "./Item";
 import style from "./style.module.scss";
 
 interface Props {
-   tarefas: ITarefa[],
-   selecionaTarefa: (tarefaSelecionada: ITarefa) => void
+   tarefas: ITarefa[];
+   selecionaTarefa: (tarefaSelecionada: ITarefa) => void;
 }
 
 function Lista({ tarefas, selecionaTarefa }: Props) {
@@ -17,7 +17,7 @@ function Lista({ tarefas, selecionaTarefa }: Props) {
                <Item
                   selecionaTarefa={selecionaTarefa}
                   key={item.id}
-                  {...item} 
+                  {...item}
                />
             ))}
          </ul>
